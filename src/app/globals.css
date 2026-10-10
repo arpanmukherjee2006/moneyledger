@@ -1,0 +1,257 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Design tokens. Every colour, size, space and radius in the app comes
+   from here. Light values on :root, dark values under [data-theme="dark"].
+   ------------------------------------------------------------------ */
+:root {
+  color-scheme: light;
+
+  /* surfaces and ink */
+  --bg: #f4f5f7;
+  --surface: #ffffff;
+  --surface-2: #eef0f3;
+  --surface-3: #e3e6eb;
+  --border: #e2e5ea;
+  --border-strong: #c9ced6;
+  --fg: #111827;
+  --fg-2: #4b5563;
+  --fg-3: #6b7280;
+  --on-accent: #ffffff;
+
+  /* brand accent */
+  --accent: #4338ca;
+  --accent-hover: #3730a3;
+  --accent-soft: #e0e7ff;
+  --accent-text: #3730a3;
+  --ring: #4338ca;
+
+  /* money roles: pass the dataviz validator for this surface */
+  --in: #16a34a;
+  --in-text: #15803d;
+  --in-soft: #dcfce7;
+  --out: #ea580c;
+  --out-text: #c2410c;
+  --out-soft: #ffedd5;
+
+  --danger: #dc2626;
+  --danger-text: #b91c1c;
+  --danger-soft: #fee2e2;
+  --warning-text: #a16207;
+  --warning-soft: #fef9c3;
+
+  /* chart furniture */
+  --grid: #e5e7eb;
+  --axis: #6b7280;
+
+  /* shape and elevation */
+  --radius-sm: 8px;
+  --radius-lg: 16px;
+  --shadow-card: 0 1px 2px rgb(16 24 40 / 0.04), 0 1px 3px rgb(16 24 40 / 0.06);
+  --shadow-float: 0 8px 24px rgb(16 24 40 / 0.14), 0 2px 6px rgb(16 24 40 / 0.08);
+  --shadow-sheet: 0 -8px 32px rgb(16 24 40 / 0.18);
+
+  /* motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 150ms;
+  --dur: 220ms;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #0f1115;
+  --surface: #181b21;
+  --surface-2: #21252d;
+  --surface-3: #2a2f39;
+  --border: #2a2f39;
+  --border-strong: #3b4150;
+  --fg: #f1f3f5;
+  --fg-2: #b4bac4;
+  --fg-3: #8b93a1;
+  --on-accent: #ffffff;
+
+  --accent: #6366f1;
+  --accent-hover: #4f46e5;
+  --accent-soft: #2b2a5e;
+  --accent-text: #a5b4fc;
+  --ring: #a5b4fc;
+
+  --in: #22a35a;
+  --in-text: #4ade80;
+  --in-soft: #14301f;
+  --out: #d96a2a;
+  --out-text: #fb923c;
+  --out-soft: #3a2415;
+
+  --danger: #ef4444;
+  --danger-text: #f87171;
+  --danger-soft: #3b1a1a;
+  --warning-text: #fbbf24;
+  --warning-soft: #332a10;
+
+  --grid: #2a2f39;
+  --axis: #8b93a1;
+
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-float: 0 8px 24px rgb(0 0 0 / 0.5), 0 2px 6px rgb(0 0 0 / 0.4);
+  --shadow-sheet: 0 -8px 32px rgb(0 0 0 / 0.6);
+}
+
+/* Expose tokens to Tailwind utilities: bg-surface, text-fg-2, border-border, rounded-lg ... */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-fg: var(--fg);
+  --color-fg-2: var(--fg-2);
+  --color-fg-3: var(--fg-3);
+  --color-on-accent: var(--on-accent);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-text: var(--accent-text);
+  --color-ring: var(--ring);
+  --color-in: var(--in);
+  --color-in-text: var(--in-text);
+  --color-in-soft: var(--in-soft);
+  --color-out: var(--out);
+  --color-out-text: var(--out-text);
+  --color-out-soft: var(--out-soft);
+  --color-danger: var(--danger);
+  --color-danger-text: var(--danger-text);
+  --color-danger-soft: var(--danger-soft);
+  --color-warning-text: var(--warning-text);
+  --color-warning-soft: var(--warning-soft);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: var(--radius-sm);
+  --radius-lg: var(--radius-lg);
+
+  --shadow-card: var(--shadow-card);
+  --shadow-float: var(--shadow-float);
+  --shadow-sheet: var(--shadow-sheet);
+
+  /* type scale: 12 14 16 20 24 32 48 */
+  --text-xs: 12px;
+  --text-xs--line-height: 16px;
+  --text-sm: 14px;
+  --text-sm--line-height: 20px;
+  --text-base: 16px;
+  --text-base--line-height: 24px;
+  --text-lg: 20px;
+  --text-lg--line-height: 28px;
+  --text-xl: 24px;
+  --text-xl--line-height: 32px;
+  --text-2xl: 32px;
+  --text-2xl--line-height: 40px;
+  --text-3xl: 48px;
+  --text-3xl--line-height: 52px;
+}
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ------------------------------------------------------------------ base */
+html {
+  background: var(--bg);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Digits line up in columns everywhere. */
+.num,
+table,
+input[inputmode="decimal"] {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Visible focus for keyboard users only. */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Native date input: match our inputs and keep it tappable. */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.7;
+}
+:root[data-theme="dark"] input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+/* Remove number spinners where we use text inputs anyway. */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ------------------------------------------------------------------ motion */
+@keyframes ml-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes ml-slide-up {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes ml-pop {
+  from { transform: translateY(8px) scale(0.98); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+@keyframes ml-shimmer {
+  from { background-position: -200% 0; }
+  to { background-position: 200% 0; }
+}
+
+.anim-fade { animation: ml-fade-in var(--dur-fast) var(--ease-out) both; }
+.anim-slide-up { animation: ml-slide-up var(--dur) var(--ease-out) both; }
+.anim-pop { animation: ml-pop var(--dur) var(--ease-out) both; }
+
+.skeleton {
+  background: linear-gradient(90deg, var(--surface-2) 0%, var(--surface-3) 50%, var(--surface-2) 100%);
+  background-size: 200% 100%;
+  animation: ml-shimmer 1.4s linear infinite;
+  border-radius: var(--radius-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Safe-area padding for the mobile bottom nav. */
+.pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
+
+/* Chart tooltip and sheet backdrops */
+.backdrop {
+  background: rgb(15 17 21 / 0.45);
+  backdrop-filter: blur(2px);
+}
+
+/* Thin scrollbars on desktop lists */
+.scroll-thin::-webkit-scrollbar { height: 8px; width: 8px; }
+.scroll-thin::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 8px; }
